@@ -1,0 +1,6 @@
+numpy
+librosa
+arduino_simple_rpc
+selenium
+silero_vad
+sounddevice
