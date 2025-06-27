@@ -1,7 +1,7 @@
 # Installing all this
 (I'm going to write out every step, forgive me it it's overkill)
 
-1. ```git clone https://github.com/akauffm/fidget_project $$ cd fidget_project/modular_voice```
+1. ```git clone https://github.com/akauffm/fidget_project && cd fidget_project/modular_voice```
 2. ```python -m venv venv```
 3. ```source venv/bin/activate```
 4. ```pip install -r requirements.txt```
