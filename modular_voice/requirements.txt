@@ -1,6 +1,5 @@
-numpy
-librosa
 arduino_simple_rpc
 selenium
+webdriver_manager
 silero_vad
 sounddevice
