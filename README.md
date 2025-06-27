@@ -8,7 +8,7 @@
 5. ```pip install useful-moonshine-onnx@git+https://git@github.com/usefulsensors/moonshine.git#subdirectory=moonshine-onnx```
   
 ## You should now be ready to run everything
-1. In a new terminal window, run ```/Applications/Google\ Chrome.app/Contents/MacOS/Gole\ Chrome --remote-debugging-port=9222 --user-data-dir="$HOME/AutomationProfile"``` That starts up a fresh Chrome browser.
+1. In a new terminal window, run ```/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="$HOME/AutomationProfile"``` That starts up a fresh Chrome browser.
     1. Accept the terms
     2. Navigate to krea.ai/realtime
     3. Click on the webcam button and agree to the permissions popup
