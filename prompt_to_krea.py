@@ -1,4 +1,5 @@
 import time
+import argparse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -10,6 +11,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import xmlrpc.client
 from simple_rpc import Interface
 
+# -- RPC stuff, probably should be passed as an argument --
 rpc_port = "8050"
 rpc = xmlrpc.client.ServerProxy(f"http://localhost:{rpc_port}")
 
@@ -20,7 +22,18 @@ last_text_spoken = ""
 slider_value = 0
 last_slider_value = 0
 
-interface = Interface('/dev/cu.usbmodem1101')
+parser = argparse.ArgumentParser(description="Interacting with Krea realtime")
+parser.add_argument(
+    "--use_arduino",
+    default=None,
+    type=str,
+    help="Arduino port, e.g. /dev/cu.usbmodem1101"
+)
+args = parser.parse_args()
+arduino_port = args.use_arduino
+
+if (arduino_port):
+    interface = Interface(arduino_port)
 
 def set_slider_value(driver, slider_id, target_value):
     """
@@ -71,22 +84,23 @@ except Exception as e:
 # --- Main Script ---
 try:
     while True:
-        # Read Arduino value
-        slider_value = interface.getPotValue();
+        if (arduino_port):
+            # Read Arduino value
+            slider_value = interface.getPotValue();
 
-        if slider_value != last_slider_value:
-            print("Slider value:" + str(slider_value))
-            normalized_value = 0.35 + ((slider_value - 0) / (1023 - 0)) * (1 - 0.35)
+            if slider_value != last_slider_value:
+                print("Slider value:" + str(slider_value))
+                normalized_value = 0.35 + ((slider_value - 0) / (1023 - 0)) * (1 - 0.35)
 
-            try:
-                set_slider_value(driver, "myRange", normalized_value)
-                print(f"Successfully set slider 'myRange' to {normalized_value}")
-            except Exception as e:
-                print(f"An error occurred: {e}")
-            
-        last_slider_value = slider_value
+                try:
+                    set_slider_value(driver, "myRange", normalized_value)
+                    print(f"Successfully set slider 'myRange' to {normalized_value}")
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+                
+            last_slider_value = slider_value
 
-        # Fetch the prompt from your server
+        # Fetch the prompt from the RPC server
         if len(rpc.getPrompt()) > 1:
             in_text = rpc.getPrompt()
             print(in_text)
@@ -96,9 +110,9 @@ try:
             if PROMPT_TEXT != start_text:
                 PROMPT_TEXT = start_text
 
+        # Update the textarea in the browser
         if PROMPT_TEXT != last_text_spoken:
             try:
-                # Update the textarea in the browser
                 prompt_textarea.clear()
                 prompt_textarea.send_keys(PROMPT_TEXT)         
                 print("✔  Browser updated successfully.")
