@@ -3,3 +3,4 @@ selenium
 webdriver_manager
 silero_vad
 sounddevice
+numpy
