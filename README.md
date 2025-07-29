@@ -1,5 +1,5 @@
 # Team Dream
-These are all the pieces required to get camera- and voice-driven real-time diffusion running. It uses [Krea](https://krea.ai/realtime) for the image generation, a local speech detector based on [Kat's edge voice agent](https://github.com/ktomanek/edge_voice_agent) for the speech-to-text, and a [slide pot](https://www.aliexpress.us/item/3256806546906210.html) hooked up to an Arduino for the physical control.
+These are all the pieces required to get camera- and voice-driven real-time diffusion running. It uses [Krea](https://krea.ai/realtime) for the image generation, a local speech detector based on [Kat's edge voice agent](https://github.com/ktomanek/edge_voice_agent) for the speech-to-text, and a [slide pot](https://www.aliexpress.us/item/3256806546906210.html) hooked up to an Arduino for the physical prompt-adherence control.
 
 (There's a full write-up of the project with more videos [here](https://quiptic.com/team-dream/))
 
