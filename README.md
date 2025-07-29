@@ -16,4 +16,5 @@
 3. In a new terminal window, run ```python live_captions.py --use_rpc```
 4. In a new terminal window, run ```cd .. && python prompt_to_krea.py``` If you add ```--use_arduino /dev/WHATEVER_PORT``` it'll listen for the slider.
 
-## I'm nearly 100% certain I've missed something, but give it a try and let me know if you run into issues.
+## Here's how it should look:
+https://quiptic.com/wp-content/uploads/2025/07/Team-Dream-1.mp4
